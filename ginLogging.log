@@ -1,0 +1,5 @@
+[GIN-debug] Loaded HTML Templates (2): 
+	- 
+	- index.tmpl
+
+{"TimeStamp":"2024-01-11T20:27:27.060477315+05:00","StatusCode":200,"Latency":22765,"ClientIP":"::1","Method":"GET","Path":"/getData1","ErrorMessage":"","RequestProto":"HTTP/1.1"}{"TimeStamp":"2024-01-11T20:27:41.893943799+05:00","StatusCode":200,"Latency":22813,"ClientIP":"::1","Method":"GET","Path":"/getData1","ErrorMessage":"","RequestProto":"HTTP/1.1"}

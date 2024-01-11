@@ -2,9 +2,12 @@ package main
 
 import (
 	"io"
+	"log"
 	"net/http"
+	"os"
 	"time"
 
+	"github.com/QaisSultani/gin-go/logger"
 	"github.com/QaisSultani/gin-go/middleware"
 	"github.com/gin-gonic/gin"
 )
@@ -14,8 +17,16 @@ func main() {
 	// where as below will not attach any default handler. logger is attached menually below.
 	// router := gin.New()
 	// router.Use(gin.Logger())
-
 	// router.Use(middleware.Authenticate) // apply to all routes
+
+	// custom specific format log
+	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+		log.Printf("endpoint %v %v %v %v \n", httpMethod, absolutePath, handlerName, nuHandlers)
+	}
+	f, _ := os.Create("ginLogging.log")
+	gin.DefaultWriter = io.MultiWriter(f, os.Stdout) // displaying on file and standard output
+
+	router.Use(gin.LoggerWithFormatter(logger.FormatLogsJson))
 
 	router.LoadHTMLGlob("templates/*")
 	auth := gin.BasicAuth(gin.Accounts{
